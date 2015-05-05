@@ -23,7 +23,7 @@ let private getName (element:XObject) =
 let private getAttributeNamePath elementName =
     getName >> sprintf "%s/%s" elementName
 
-let rec private getPaths (path:string) (element:XElement) =
+let rec getPaths (path:string) (element:XElement) =
     let elementName = sprintf "%s/%s" path (getName element)
     let attributes = element.Attributes() |> Seq.map(fun att -> att :> XObject, getAttributeNamePath elementName att) |> Seq.toList
         
@@ -47,7 +47,8 @@ let private setValue newValue (item:XObject) =
 let anonymiseDocument replacements anonymiseValue persistHash tryLoadHash (doc:XDocument) =
     let doc = XDocument doc
     let replacements = Set replacements
-    getPaths "" doc.Root
+    let shizzle = getPaths "" doc.Root
+    shizzle
     |> List.filter(fun (element, path) -> (ElementType.ofXObject element, path) |> replacements.Contains)
     |> List.iter(fun (element, path) ->
         let currentValue = getValue element

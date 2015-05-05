@@ -8,10 +8,10 @@ open DataAccess
 let anonymise (item:string) = item.Length.ToString()
 
 let replacements =
-    [ "/Root/First/Child/Other"; "/Root/First/Other"; "/Root/First/Child/@Other" ]
+    [ "Message/Header/CollectionDetails/Collection" ]
     |> List.map XDocAnonymiser.ElementType.ofRawPath
 
-let doc = System.Xml.Linq.XDocument.Load(@"C:\Users\Isaac\Desktop\XmlSamples\sample.xml")
+let doc = System.Xml.Linq.XDocument.Load(@"C:\tmp\ilr\ILR-A-99999999-1415-20140601-164401-03.xml")
 let updatedDoc = XDocAnonymiser.anonymiseDocument replacements anonymise DataAccess.sqlPersist DataAccess.sqlTryGetHash doc
 updatedDoc.Save (@"C:\Users\Isaac\Desktop\XmlSamples\sample2.xml")
 
