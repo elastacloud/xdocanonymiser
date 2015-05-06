@@ -1,0 +1,8 @@
+﻿<Window x:Class="AnonymiserUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <TreeView x:Name="tvXml" HorizontalAlignment="Left" Height="301" Margin="10,11,0,0" VerticalAlignment="Top" Width="499" Loaded="tvXml_Loaded"/>
+    </Grid>
+</Window>
